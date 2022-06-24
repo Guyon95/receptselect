@@ -1,0 +1,9 @@
+.section-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 800px;
+    height: 500px;
+    border-radius: 8px;
+    background-repeat: no-repeat;
+}

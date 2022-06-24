@@ -1,8 +1,17 @@
-import './SignIn.css';
-import {useState} from "react";
+import './SignIn.module.css';
+import {useContext, useState} from "react";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import {AuthContext} from "../../context/AuthContext";
+import background from "../../assets/vegetables-set-left-black-slate.jpg";
+import Section from "../../components/Section/Section";
+import Button from "../../components/Button/Button";
+import Form from "../../components/Form/Form";
+import Input from "../../components/Input/Input";
 
 function SignIn(){
+    const { login } = useContext(AuthContext);
+
     const [user, setUser] = useState({
         email: null,
         password: null
@@ -18,30 +27,48 @@ function SignIn(){
     }
 
     async function getToken() {
-        /*try {
+        try {
+            /*https://frontend-educational-backend.herokuapp.com/api/auth/signin*/
+
             const response = await axios.post('http://localhost:3000/login', user,{
-                CancelToken: source.token,
+                //CancelToken: source.token,
             });
 
             login(response.data.accessToken);
 
         } catch(e) {
+
+            alert("Error")
+            /*TODO Error afhandeling*/
             console.error(e);
-        }*/
+        }
     }
 
-
     return(
-    <>
-        <section>
-            <form>
-                <input type="email" name="email" placeholder="Email" onChange={handleChange} />
-                <input type="password" name="password" placeholder="Wachtwoord" onChange={handleChange} />
-                <p>Geen account? <Link to="/signup">Registreer hier.</Link></p>
-                <button type="button" onClick={getToken}>Inloggen</button>
-            </form>
-        </section>
-    </>
+        <Section
+            background={background}
+        >
+            <Form>
+                <Input
+                    type="email"
+                    name="email"
+                    placeholder="Gebruikersnaam"
+                    onChange={handleChange}
+                />
+                <Input
+                    type="password"
+                    name="password"
+                    placeholder="Wachtwoord"
+                    onChange={handleChange}
+                />
+                <p>Geen account? <Link to="/signup">Registreer hier</Link></p>
+                <Button
+                    onClick={getToken}
+                    name="Inloggen"
+                    styleName="button-body"
+                />
+            </Form>
+        </Section>
     );
 }
 

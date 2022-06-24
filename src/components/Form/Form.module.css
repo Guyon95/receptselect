@@ -1,0 +1,16 @@
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-basis: 300px;
+    height: 300px;
+    margin: 5%;
+}
+
+.form-container p{
+    color: white;
+}
+
+.form-container a{
+    color: var(--orange);
+}

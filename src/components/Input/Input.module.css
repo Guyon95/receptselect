@@ -1,0 +1,9 @@
+.input-field{
+    flex-basis: 48px;
+    justify-content: space-between;
+    width: 100%;
+    border: none;
+    background-color: rgba(211,211,211,0.6);
+    border-radius: 8px;
+    padding: 10px;
+}
