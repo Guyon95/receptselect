@@ -64,7 +64,7 @@ function Home(){
                 </div>
                 <div className={styles[`question-container`]}>
                     <p className={styles[`question`]}>Met hoeveel eet u?</p>
-                    <input className={styles[`input-field`]} type="number" placeholder="0" name="number" max="20" min="0" onChange={handleChange}/>
+                    <input className={styles[`input-field`]} type="number" value={company} name="number" max="20" min="0" onChange={handleChange}/>
                 </div>
                 <div className={styles[`question-container`]}>
                     <p className={styles[`question`]}>Heeft u zin om te koken?</p>
