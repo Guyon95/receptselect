@@ -7,6 +7,10 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import {useContext} from "react";
 import { AuthContext } from './context/AuthContext';
+import Contact from "./pages/Contact/Contact";
+import Recipes from "./pages/Recipes/Recipes";
+import RecipeDetail from "./pages/RecipeDetail/RecipeDetail";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   const {isAuth} = useContext(AuthContext);
@@ -19,23 +23,23 @@ function App() {
       <main className={styles[`main-container`]}>
         <Switch>
           <Route exact path="/">
-            {isAuth ? <Home />/*TODO Home*/ : <Redirect to="/signin" />}
+            {isAuth ? <Home /> : <Redirect to="/signin" />}
           </Route>
 
           <Route path="/contact">
-            {isAuth ? {/*TODO Contact*/} : <Redirect to="/signin" />}
+            {isAuth ? <Contact /> : <Redirect to="/signin" />}
           </Route>
 
           <Route path="/recipes">
-            {isAuth ? {/*TODO Recipes*/} : <Redirect to="/signin" />}
+            {isAuth ? <Recipes /> : <Redirect to="/signin" />}
           </Route>
 
           <Route path="/recipe/:id">
-            {isAuth ? {/*TODO Recipes*/} : <Redirect to="/signin" />}
+            {isAuth ? <RecipeDetail /> : <Redirect to="/signin" />}
           </Route>
 
           <Route path="/profile">
-            {isAuth ? <p>Hallo</p> /*TODO Profile*/ : <Redirect to="/signin" />}
+            {isAuth ? <Profile /> : <Redirect to="/signin" />}
           </Route>
 
           <Route exact path ="/signin">
