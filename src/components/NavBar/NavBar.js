@@ -17,7 +17,7 @@ function NavBar() {
                     <img className={styles[`logo-container-img`]} src={logo} alt="logo"/>
                     <h2>Recept Select</h2>
                 </span>
-            </Link>
+        </Link>
             {isAuth ?
                 <div className={styles[`button-container`]}>
                         <Button
