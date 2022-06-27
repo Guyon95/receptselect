@@ -15,10 +15,13 @@
 }
 .input-field{
     flex-basis: 48px;
-    justify-content: space-between;
     width: 20%;
     border: none;
     background-color: rgba(255,255,255,0.8);
     border-radius: 8px;
     padding: 10px;
+}
+
+.input-field:focus{
+    outline: var(--orange) solid 2px;
 }

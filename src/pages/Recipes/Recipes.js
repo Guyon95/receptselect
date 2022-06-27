@@ -6,6 +6,16 @@ import dinnerIcon from "../../assets/dinner.png"
 
 
 function Recipes(){
+
+    function getRandomRecipe(){
+        console.log("pannenkoeken");
+    }
+
+    function searchRecipes(){
+        console.log("Ik ben aan het zoeken.....");
+    }
+
+
     return(
         <Section
             background={background}
@@ -19,13 +29,24 @@ function Recipes(){
                         name="recipe-searchbar"
                     />
                     <button
+                        type="button"
                         className={styles[`search-button`]}
-                        name="Zoeken"
-                        onClick={() => console.log("Ik zoek nu......")}
-                    ><img className={styles[``]} src={searchIcon} alt="searchIcon"/></button>
+                        name="search-button"
+                        onClick={searchRecipes}
+                    >
+                        <img src={searchIcon} alt="searchIcon"/>
+                    </button>
                 </div>
                 <div className={styles[`random-container`]}>
-                    <button className={styles[`random-recipe-button`]}><img className={styles[``]} src={dinnerIcon} alt="dinnerIcon"/><p>Verras me</p></button>
+                    <button
+                        type="button"
+                        className={styles[`random-recipe-button`]}
+                        name="random-recipe-button"
+                        onClick={getRandomRecipe}
+                    >
+                        <img src={dinnerIcon} alt="dinnerIcon"/>
+                        <p>Verras me</p>
+                    </button>
                 </div>
             </form>
         </Section>
