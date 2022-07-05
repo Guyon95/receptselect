@@ -13,7 +13,7 @@ function SignIn(){
     const { login } = useContext(AuthContext);
 
     const [user, setUser] = useState({
-        email: null,
+        username: null,
         password: null
     });
 
@@ -28,9 +28,7 @@ function SignIn(){
 
     async function getToken() {
         try {
-            /*https://frontend-educational-backend.herokuapp.com/api/auth/signin*/
-
-            const response = await axios.post('http://localhost:3000/login', user,{
+            const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin', user,{
                 //CancelToken: source.token,
             });
 
@@ -50,8 +48,8 @@ function SignIn(){
         >
             <Form>
                 <Input
-                    type="email"
-                    name="email"
+                    type="text"
+                    name="username"
                     placeholder="Gebruikersnaam"
                     onChange={handleChange}
                 />

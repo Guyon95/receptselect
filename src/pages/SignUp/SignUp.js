@@ -32,7 +32,7 @@ function SignUp(){
         try {
             /*https://frontend-educational-backend.herokuapp.com/api/auth/signup*/
 
-            const response = await axios.post('http://localhost:3000/register', user,{
+            const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', user,{
                 //CancelToken: source.token,
             });
 

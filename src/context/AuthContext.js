@@ -1,6 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom';
-import jwtDecode from "jwt-decode";
 import axios from "axios";
 
 export const AuthContext = createContext({});
@@ -19,14 +18,11 @@ function AuthContextProvider({ children }) {
     const token = localStorage.getItem('token');
 
     if (token !== null){
-
-      const decodedToken = jwtDecode(token);
-
-      getUserData(decodedToken.sub, token).then();
-
+      getUserData(token).then();
     }
     else{
       toggleAuth({
+        isAuth: false,
         user: null,
         status: 'done',
       });
@@ -44,9 +40,7 @@ function AuthContextProvider({ children }) {
   function login(token) {
     localStorage.setItem('token', token);
 
-    const decodedToken = jwtDecode(token);
-
-    getUserData(decodedToken.sub, token)
+    getUserData(token)
         .then(() => history.push('/'));
   }
 
@@ -56,16 +50,17 @@ function AuthContextProvider({ children }) {
 
     toggleAuth({
       isAuth: false,
-      user: null
+      user: null,
+      status: 'done'
     });
 
     history.push('/');
   }
 
-  async function getUserData(id, token){
+  async function getUserData(token){
 
     try{
-      const data = await axios.get(`http://localhost:3000/600/users/${id}`,{
+      const data = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/user`,{
         headers:{
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -78,7 +73,6 @@ function AuthContextProvider({ children }) {
         user: {
           username: data.data.username,
           email: data.data.email,
-          id: data.data.id,
         },
         status: 'done'
       });
