@@ -2,10 +2,19 @@ import styles from "./RecipeDetail.module.css"
 import food from "../../assets/juicy-steak-medium-rare-beef-with-spices-grilled-vegetables.jpg"
 import addIcon from "../../assets/add.png"
 import minusIcon from "../../assets/minus.png"
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
 
 function RecipeDetail(){
+    const location = useLocation();
     const [countPerson, setCountPerson] = useState(2);
+
+
+        if (location.state !== undefined) {
+            setCountPerson(location.state.countPerson);
+        }
+
+
 
     return(
         <>
@@ -27,6 +36,7 @@ function RecipeDetail(){
                                 type="button"
                                 className={styles[`round-button`]}
                                 name="minus-button"
+                                disabled={countPerson === 0}
                                 onClick={() => setCountPerson(countPerson - 1)}
                             >
                                 <img className={styles[`add-minus-icon`]} src={minusIcon} alt="minus"/>
@@ -35,7 +45,8 @@ function RecipeDetail(){
                                 type="button"
                                 className={styles[`round-button`]}
                                 name="add-button"
-                                onClick={() => setCountPerson(countPerson + 1)}
+                                disabled={countPerson === 20}
+                                onClick={() => setCountPerson(parseInt(countPerson) + 1)}
                             >
                                 <img className={styles[`add-minus-icon`]} src={addIcon} alt="add"/>
                             </button>

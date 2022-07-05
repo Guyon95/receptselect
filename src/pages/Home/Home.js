@@ -6,11 +6,14 @@ import background from "../../assets/golden-cutlery-with-textile-plate-dark-back
 import styles from "./Home.module.css"
 import Button from "../../components/Button/Button";
 import {useState} from "react";
+import {useHistory} from "react-router-dom";
 
 function Home(){
     const [mood, setMood] = useState('');
     const [company, setCompany] = useState(0);
     const [motivation, setMotivation] = useState('');
+
+    const history = useHistory();
 
     function resetInput(){
         setMood('');
@@ -22,11 +25,45 @@ function Home(){
         setCompany(e.target.value);
     }
 
-    function log(){
-        console.log(mood);
-        console.log(company);
-        console.log(motivation);
+    async function handleSubmit(){
+
+        let maxReadyTime = null;
+        let minSugar = null;
+        let maxSugar = null
+
+        if(motivation === 'no'){
+            maxReadyTime = 20;
+        }
+
+        if(mood === 'sad'){
+            minSugar = 30;
+        }
+        else if(mood === 'neutral'){
+            minSugar = 15;
+            maxSugar = 29;
+        }
+        else if(mood === 'happy') {
+            maxSugar = 14;
+        }
+
+
+        const params = {
+            minSugar: minSugar,
+            maxSugar: maxSugar,
+            maxReadyTime: maxReadyTime,
+        }
+
+        const data ={
+            params,
+            countPerson: company,
+        }
+
+        console.log(data)
+
+        history.push('/recipes', data);
+
     }
+
 
     return(
         <Section
@@ -40,7 +77,6 @@ function Home(){
                             id="Verdrietig"
                             type="radio"
                             name="stemming"
-                            value="sad"
                             checked={mood === 'sad'}
                             onChange={() => setMood('sad')}
                         />
@@ -48,7 +84,6 @@ function Home(){
                             id="Neutraal"
                             type="radio"
                             name="stemming"
-                            value="neutral"
                             checked={mood === 'neutral'}
                             onChange={() => setMood('neutral')}
                         />
@@ -56,7 +91,6 @@ function Home(){
                             id="Blij"
                             type="radio"
                             name="stemming"
-                            value="happy"
                             checked={mood === 'happy'}
                             onChange={() => setMood('happy')}
                         />
@@ -93,7 +127,7 @@ function Home(){
                     />
                     <Button
                         /*TODO OnClick*/
-                        onClick={log}
+                        onClick={handleSubmit}
                         name="Zoek recept"
                         styleName="home-button"
                     />

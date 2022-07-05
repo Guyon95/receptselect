@@ -11,50 +11,54 @@ import Contact from "./pages/Contact/Contact";
 import RecipesSearchBar from "./pages/RecipesSearchBar/RecipesSearchBar";
 import RecipeDetail from "./pages/RecipeDetail/RecipeDetail";
 import Profile from "./pages/Profile/Profile";
+import Recipes from "./pages/Recipes/Recipes";
 
 function App() {
   const {isAuth} = useContext(AuthContext);
 
   return (
     <>
-      <header>
+        <header>
         <NavBar />
-      </header>
-      <main className={styles[`main-container`]}>
-        <Switch>
-          <Route exact path="/">
-            {isAuth ? <Home /> : <Redirect to="/signin" />}
-          </Route>
+        </header>
+        <main className={styles[`main-container`]}>
+            <Switch>
+              <Route exact path="/">
+                {isAuth ? <Home /> : <Redirect to="/signin" />}
+              </Route>
 
-          <Route path="/contact">
-            {isAuth ? <Contact /> : <Redirect to="/signin" />}
-          </Route>
+              <Route path="/contact">
+                {isAuth ? <Contact /> : <Redirect to="/signin" />}
+              </Route>
 
-          <Route path="/recipes">
-            {isAuth ? <RecipesSearchBar /> : <Redirect to="/signin" />}
-          </Route>
+                <Route path="/recipes">
+                    {isAuth ? <Recipes /> : <Redirect to="/signin" />}
+                </Route>
 
-          <Route path="/recipe/:id">
-            {isAuth ? <RecipeDetail /> : <Redirect to="/signin" />}
-          </Route>
+              <Route path="/recipesSearchBar">
+                {isAuth ? <RecipesSearchBar /> : <Redirect to="/signin" />}
+              </Route>
 
-          <Route path="/profile">
-            {isAuth ? <Profile /> : <Redirect to="/signin" />}
-          </Route>
+              <Route path="/recipe/:id">
+                {isAuth ? <RecipeDetail /> : <Redirect to="/signin" />}
+              </Route>
 
-          <Route exact path ="/signin">
-            <SignIn />
-          </Route>
-          <Route exact path ="/signup">
-            <SignUp />
-          </Route>
+              <Route path="/profile">
+                {isAuth ? <Profile /> : <Redirect to="/signin" />}
+              </Route>
 
-        </Switch>
-      </main>
+              <Route exact path ="/signin">
+                <SignIn />
+              </Route>
+              <Route exact path ="/signup">
+                <SignUp />
+              </Route>
+            </Switch>
+        </main>
 
-      <footer>
+        <footer>
         <Footer/>
-      </footer>
+        </footer>
     </>
   );
 }
