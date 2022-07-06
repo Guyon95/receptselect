@@ -6,6 +6,7 @@
 
 .question{
     font-size: 22pt;
+    color: white;
 }
 
 .button-container{
@@ -24,4 +25,8 @@
 
 .input-field:focus{
     outline: var(--orange) solid 2px;
+}
+
+.error{
+    color: var(--orange);
 }

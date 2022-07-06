@@ -7,10 +7,6 @@
     margin: 5%;
 }
 
-.form-container p{
-    color: white;
-}
-
 .form-container a{
     color: var(--orange);
 }

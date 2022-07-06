@@ -13,57 +13,101 @@ function Home(){
     const [company, setCompany] = useState(0);
     const [motivation, setMotivation] = useState('');
 
+    const [data, setData] = useState({
+        params:{
+            minSugar: null,
+            maxSugar: null,
+            maxReadyTime: null,
+        },
+        personCount: 0,
+
+    })
+
+    const [error, toggleError] = useState(false);
     const history = useHistory();
 
     function resetInput(){
         setMood('');
         setCompany(0);
         setMotivation('');
+        toggleError(false);
     }
 
-    function handleChange(e){
-        setCompany(e.target.value);
+    function handleChangeCompany(e){
+        const {value} = e.target;
+
+        setCompany(value);
+
+        setData({
+            params: {
+                minSugar: data.params.minSugar,
+                maxSugar: data.params.maxSugar,
+                maxReadyTime: data.params.maxReadyTime,
+            },
+            personCount: e.target.value,
+        });
     }
 
-    async function handleSubmit(){
+    function handleChangeMood(e){
 
-        let maxReadyTime = null;
+        const value = e.target.id;
+
+        setMood(value);
+
         let minSugar = null;
-        let maxSugar = null
+        let maxSugar = null;
 
-        if(motivation === 'no'){
-            maxReadyTime = 20;
-        }
-
-        if(mood === 'sad'){
+        if(value === 'sad'){
             minSugar = 30;
         }
-        else if(mood === 'neutral'){
+        else if(value === 'neutral'){
             minSugar = 15;
             maxSugar = 29;
         }
-        else if(mood === 'happy') {
+        else if(value === 'happy') {
             maxSugar = 14;
         }
 
-
-        const params = {
-            minSugar: minSugar,
-            maxSugar: maxSugar,
-            maxReadyTime: maxReadyTime,
-        }
-
-        const data ={
-            params,
-            countPerson: company,
-        }
-
-        console.log(data)
-
-        history.push('/recipes', data);
+        setData({
+            params: {
+                minSugar: minSugar,
+                maxSugar: maxSugar,
+                maxReadyTime: data.params.maxReadyTime,
+            },
+            personCount: data.personCount
+        });
 
     }
 
+    function handleChangeMotivation(e){
+        const value = e.target.id;
+
+        setMotivation(value);
+
+        let maxReadyTimeValue = null;
+
+        if(value === 'no'){
+            maxReadyTimeValue = 20;
+        }
+
+        setData({
+            params: {
+                minSugar: data.params.minSugar,
+                maxSugar: data.params.maxSugar,
+                maxReadyTime: maxReadyTimeValue,
+            },
+            personCount: data.personCount
+        });
+    }
+
+    function handleSubmit(){
+        if(mood === '' || company === 0 || motivation === '') {
+            toggleError(true);
+        }
+        else{
+            history.push('/recipes', data);
+        }
+    }
 
     return(
         <Section
@@ -74,51 +118,57 @@ function Home(){
                     <p className={styles[`question`]}>Wat is uw stemming?</p>
                     <span className={styles[`radio-container`]}>
                         <Radio
-                            id="Verdrietig"
+                            id="sad"
                             type="radio"
                             name="stemming"
+                            description="Verdrietig"
                             checked={mood === 'sad'}
-                            onChange={() => setMood('sad')}
+                            onChange={handleChangeMood}
                         />
                         <Radio
-                            id="Neutraal"
+                            id="neutral"
                             type="radio"
                             name="stemming"
+                            description="Neutraal"
                             checked={mood === 'neutral'}
-                            onChange={() => setMood('neutral')}
+                            onChange={handleChangeMood}
                         />
                         <Radio
-                            id="Blij"
+                            id="happy"
                             type="radio"
                             name="stemming"
+                            description="Blij"
                             checked={mood === 'happy'}
-                            onChange={() => setMood('happy')}
+                            onChange={handleChangeMood}
                         />
                     </span>
                 </div>
                 <div className={styles[`question-container`]}>
                     <p className={styles[`question`]}>Met hoeveel eet u?</p>
-                    <input className={styles[`input-field`]} type="number" value={company} name="number" max="20" min="0" onChange={handleChange}/>
+                    <input className={styles[`input-field`]} type="number" value={company} name="number" max="20" min="0" onChange={handleChangeCompany}/>
                 </div>
                 <div className={styles[`question-container`]}>
                     <p className={styles[`question`]}>Heeft u zin om te koken?</p>
                     <span className={styles[`radio-container`]}>
                         <Radio
-                            id="Ja"
+                            id="yes"
                             type="radio"
                             name="motivatie"
+                            description="Ja"
                             checked={motivation === 'yes'}
-                            onChange={() => setMotivation('yes')}
+                            onChange={handleChangeMotivation}
                         />
                         <Radio
-                            id="Nee"
+                            id="no"
                             type="radio"
                             name="motivatie"
+                            description="Nee"
                             checked={motivation === 'no'}
-                            onChange={() => setMotivation('no')}
+                            onChange={handleChangeMotivation}
                         />
                     </span>
                 </div>
+                {error && <p className={styles[`error`]}>Niet alle velden zijn gevuld!</p>}
                 <div className={styles[`button-container`]}>
                     <Button
                         onClick={resetInput}
