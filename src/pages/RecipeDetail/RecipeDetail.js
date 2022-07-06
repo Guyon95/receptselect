@@ -10,9 +10,11 @@ function RecipeDetail(){
     const [countPerson, setCountPerson] = useState(2);
 
 
-        if (location.state !== undefined) {
+    useEffect(() =>{
+        if (location.state !== {}) {
             setCountPerson(location.state.countPerson);
         }
+    },[])
 
 
 
