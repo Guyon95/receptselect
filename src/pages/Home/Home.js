@@ -12,6 +12,8 @@ function Home(){
     const [mood, setMood] = useState('');
     const [company, setCompany] = useState(0);
     const [motivation, setMotivation] = useState('');
+    const [error, toggleError] = useState(false);
+    const history = useHistory();
 
     const [data, setData] = useState({
         params:{
@@ -23,8 +25,7 @@ function Home(){
 
     })
 
-    const [error, toggleError] = useState(false);
-    const history = useHistory();
+
 
     function resetInput(){
         setMood('');

@@ -27,7 +27,6 @@ function SignUp(){
     }
 
     async function createUserRequest() {
-        // 1. Request maken naar de backend waarin we vragen of deze inloggegevens kloppen
         try {
 
             await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', user,{
@@ -37,7 +36,7 @@ function SignUp(){
            history.push('/signin');
 
         } catch(e) {
-            console.error(e);
+            alert(e.response.data.message);
         }
     }
 

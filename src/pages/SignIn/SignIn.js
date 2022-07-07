@@ -8,9 +8,11 @@ import Section from "../../components/Section/Section";
 import Button from "../../components/Button/Button";
 import Form from "../../components/Form/Form";
 import Input from "../../components/Input/Input";
+import styles from "../Home/Home.module.css";
 
 function SignIn(){
     const { login } = useContext(AuthContext);
+    const [error, toggleError] = useState(false);
 
     const [user, setUser] = useState({
         username: null,
@@ -27,6 +29,7 @@ function SignIn(){
     }
 
     async function getToken() {
+
         try {
             const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin', user,{
                 //CancelToken: source.token,
@@ -35,10 +38,7 @@ function SignIn(){
             login(response.data.accessToken);
 
         } catch(e) {
-
-            alert("Error")
-            /*TODO Error afhandeling*/
-            console.error(e);
+            toggleError(true);
         }
     }
 
@@ -60,6 +60,7 @@ function SignIn(){
                     onChange={handleChange}
                 />
                 <p>Geen account? <Link to="/signup">Registreer hier</Link></p>
+                {error && <p className={styles[`error`]}>Combinatie van wachtwoord en gebruikersnaam zijn onjuist!</p>}
                 <Button
                     onClick={getToken}
                     name="Inloggen"
