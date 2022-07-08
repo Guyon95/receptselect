@@ -6,8 +6,6 @@
     flex-basis: 300px;
     height: 300px;
     border-radius: 8px;
-    flex-grow: 0;
-    flex-shrink: 0;
     margin: 16px;
     box-shadow: 0 100px 80px rgba(0, 0, 0, 0.12);
     border: none;

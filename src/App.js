@@ -17,11 +17,11 @@ function App() {
   const {isAuth} = useContext(AuthContext);
 
   return (
-    <>
-        <header>
-        <NavBar />
+    <div className={styles[`container`]}>
+        <header className={styles[`header`]}>
+            <NavBar />
         </header>
-        <main className={styles[`main-container`]}>
+        <div className={styles[`main`]}>
             <Switch>
               <Route exact path="/">
                 {isAuth ? <Home /> : <Redirect to="/signin" />}
@@ -39,7 +39,7 @@ function App() {
                 {isAuth ? <RecipesSearchBar /> : <Redirect to="/signin" />}
               </Route>
 
-              <Route path="/recipe/:id">
+              <Route path="/recipe/:id/:countPerson">
                 {isAuth ? <RecipeDetail /> : <Redirect to="/signin" />}
               </Route>
 
@@ -54,12 +54,12 @@ function App() {
                 <SignUp />
               </Route>
             </Switch>
-        </main>
+        </div>
 
-        <footer>
-        <Footer/>
+        <footer className={styles[`footer`]}>
+            <Footer/>
         </footer>
-    </>
+    </div>
   );
 }
 

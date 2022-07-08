@@ -6,7 +6,7 @@ function RecipeCard({data, countPerson}){
 
     return(
         <button className={styles[`recipe-card`]}
-            onClick={() => history.push(`/recipe/${data.id}`, {countPerson})}
+            onClick={() => history.push(`/recipe/${data.id}/${countPerson}`)}
         >
             {data &&
                 <>

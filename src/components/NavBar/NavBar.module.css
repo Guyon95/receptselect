@@ -3,13 +3,14 @@ h2{
 }
 
 .nav-container {
+    flex-wrap: wrap;
+    flex: 1 0;
     background-color: #fff;
     display: flex;
-    padding: 2%;
+    padding: 10px;
     align-items: center;
     justify-content: space-between;
     border-bottom: var(--orange) solid 2px;
-    margin-bottom: 5%;
 }
 
 .button-container{

@@ -2,10 +2,15 @@
 .article-container{
     display: flex;
     flex-direction: row;
-    box-shadow: 10px 10px 10px lightgray;
+    box-shadow: 10px 10px 10px gray;
     margin-bottom: 100px;
     border-radius: 8px;
     width: 1000px;
+    background-color: white;
+}
+
+.article-container p{
+    color: var(--black);
 }
 
 .article-content{
@@ -23,6 +28,7 @@
     background-color: lightgray;
     border-radius: 8px;
     padding: 10px;
+    padding-left: 20px ;
     margin: 20px;
 }
 
@@ -64,6 +70,23 @@
     font-size: 16pt;
 }
 
+.ingredient-list-container{
+    list-style: square;
+    font-size: 16pt;
+}
+
 .food-prepare-container{
     width: 800px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80px;
+}
+
+.clock-img{
+    width: 24px;
+    height: 24px;
 }

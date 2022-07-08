@@ -1,6 +1,26 @@
-.main-container{
+
+.container{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
+    flex-direction: column;
+    height: 100vh;
 }
+
+.header{
+    position: fixed;
+    width: 100%;
+}
+
+.main{
+    margin-top: 102px;
+    padding: 50px;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
