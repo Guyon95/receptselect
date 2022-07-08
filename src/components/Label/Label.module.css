@@ -1,6 +1,7 @@
 .label-box{
     border: gray solid 1px;
     margin-right: 5px;
+    margin-bottom: 5px;
     padding: 0 5px;
     border-radius: 8px;
     box-shadow: 10px 10px 10px lightgray;

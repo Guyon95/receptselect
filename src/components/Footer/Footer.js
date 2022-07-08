@@ -5,8 +5,8 @@ function Footer(){
     return (
         <section className={styles[`footer-section`]}>
             <img className={styles[`footer-img`]} src={logo} alt="logo"/>
-            <h2 className={styles[`footer-h2`]}>Recept Select</h2>
-            <p className={styles[`footer-p`]}>&copy; Recept Select - alle rechten voorbehouden</p>
+            <h2 className={styles[`footer-h2`]}>Recipe Select</h2>
+            <p className={styles[`footer-p`]}>&copy; Recipe Select - All Rights Reserved.</p>
         </section>
     );
 }

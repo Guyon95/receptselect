@@ -15,7 +15,7 @@ function NavBar() {
             <Link to="/">
                 <span className={styles[`logo-container`]}>
                     <img className={styles[`logo-container-img`]} src={logo} alt="logo"/>
-                    <h2>Recept Select</h2>
+                    <h2>Recipe Select</h2>
                 </span>
         </Link>
             {isAuth ?

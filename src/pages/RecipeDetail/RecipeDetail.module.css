@@ -24,7 +24,7 @@
 .ingredient-content{
     display: flex;
     flex-direction:column;
-    width: 200px;
+    width: 250px;
     background-color: lightgray;
     border-radius: 8px;
     padding: 10px;
@@ -89,4 +89,10 @@
 .clock-img{
     width: 24px;
     height: 24px;
+}
+
+.label-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }

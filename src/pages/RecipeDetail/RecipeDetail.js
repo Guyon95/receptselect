@@ -67,8 +67,9 @@ function RecipeDetail(){
                                 <p>Vegatarisch: {recipeData.vegetarian ? 'Ja' : 'Nee'}</p>
                                 <p>Gluten vrij: {recipeData.glutenfree ? 'Ja' : 'Nee'}</p>
                                 <p>{Math.round(calorie.amount)} kcal</p>
+
                                 {recipeData.dishTypes &&
-                                    <div>
+                                    <div className={styles[`label-container`]}>
                                         {recipeData.dishTypes.map((dishType) =>{
                                             return (<Label key={dishType} value={dishType}></Label>);
                                         })}
