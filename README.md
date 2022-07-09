@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Installatiehandleiding
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+De volgende twee programma's moeten geïnstalleerd worden:
 
-## Available Scripts
+    * Webstorm
+    * NodeJS
 
-In the project directory, you can run:
+## NodeJs
 
-### `npm start`
+Stap 1: Ga naar https://nodejs.org/en/ \
+Stap 2: Klik op het groene bloekje met "18.5.0 Current". De download wordt gestart.\
+Stap 3: Ga naar uw "Download" map in uw "Verkenner". Hier vind u uw node-v18.5.0-x64.msi terug. Dubbelklik op het bestand om de installatie te starten.\
+Stap 4: Het NodeJs Setup is geopend. Klik op "Next".\
+Stap 5: Vink "I accept the terms in the License Agreement" aan. Klik daarna op "Next". \
+Stap 6: Klik nogmaals op "Next". Deze instelling staan automatisch goed. \
+Stap 7: Klik nogmaals op "Next". Deze instelling staan automatisch goed. \
+Stap 8: Klik nogmaals op "Next". Deze instelling staan automatisch goed. \
+Stap 9: Klik op "Install". NodeJs wordt nu geïnstalleerd. Wacht tot de statusbalk 100%. \
+Stap 10: De installatie is voltooid. Klik op "Finish".\
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Webstorm
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Stap 1: Ga naar https://www.jetbrains.com/webstorm/ \
+Stap 2: Klik op de "Download" knop. Vervolgens start de browser een download van het webstorm applicaties.\
+Stap 3: Ga naar uw "Download" map in uw "Verkenner". Hier vind u uw Webstorm-2022.1.3.exe terug. Dubbelklik op het bestand om de installatie te starten.\
+Stap 4: Het WebStorm Setup is geopend. Klik op "Next".\
+Stap 5: Klik nogmaals op "Next". Deze instelling staan automatisch goed. \
+Stap 6: Klik nogmaals op "Next". Deze instelling staan automatisch goed. \
+Stap 7: Klik op "Install". Deze instelling staan automatisch goed. Webstorm wordt nu geïnstalleerd. Wacht tot de statusbalk 100%. \
+Stap 8: De installatie is voltooid. Klik op "Finish".
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Project downloaden
+Stap 1: Mocht u de React applicatie niet hebben deze kunt uw downloaden op https://github.com/Guyon95/receptselect \
+Stap 2: Onder de knop "Code" kunt u het zip bestand downloaden door op "Download Zip" te klikken. \
+Stap 3: De react applicatie kunt u terug vinden in uw Verkenner onder "Downloads". \
+Stap 4: Pak het zip bestand uit. \
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project openen
+Stap 1: Klik op start en zoek "Webstorm" in de zoek balk en start deze op.\
+Stap 2: Webstorm is geopend. Als goed is opent de op de "Project" tabblad. Zo niet klik het project tabblad aan.\
+Stap 3: Klik op "Open" om de map te zoeken van de react applicatie die u wilt uitvoeren. Zoek de map van de react applicatie op.
+Stap 4: Selecteer de gewenste map en druk op "Ok" en vervolgens op "Trust Project". Webstorm zal nu de applicatie inladen.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Project Starten
+Stap 1: Open de terminal. View => Tool Windows => Terminal. Shortcut `Alt+F12` \
+Stap 2: De terminal is nu onder aan u scherm geopend. \
+Stap 3: Als u het project voor de allereerste keer inlaad voer dan het volgende commando in `npm install`
+Stap 4: Zodra de npm install klaar is kunt het volgende commando invoeren om de React applicatie te starten. `npm start`
+Stap 5: De React applicatie is gestart. Veel plezier!
