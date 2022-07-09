@@ -8,7 +8,6 @@ import Home from "./pages/Home/Home";
 import {useContext} from "react";
 import { AuthContext } from './context/AuthContext';
 import Contact from "./pages/Contact/Contact";
-import RecipesSearchBar from "./pages/RecipesSearchBar/RecipesSearchBar";
 import RecipeDetail from "./pages/RecipeDetail/RecipeDetail";
 import Profile from "./pages/Profile/Profile";
 import Recipes from "./pages/Recipes/Recipes";
@@ -34,10 +33,6 @@ function App() {
                 <Route path="/recipes">
                     {isAuth ? <Recipes /> : <Redirect to="/signin" />}
                 </Route>
-
-              <Route path="/recipesSearchBar">
-                {isAuth ? <RecipesSearchBar /> : <Redirect to="/signin" />}
-              </Route>
 
               <Route path="/recipe/:id/:countPerson">
                 {isAuth ? <RecipeDetail /> : <Redirect to="/signin" />}
