@@ -27,8 +27,7 @@
     width: 250px;
     background-color: lightgray;
     border-radius: 8px;
-    padding: 10px;
-    padding-left: 20px ;
+    padding: 10px 10px 10px 30px;
     margin: 20px;
 }
 
@@ -66,7 +65,7 @@
 }
 
 .list-container{
-    list-style: decimal inside;
+    list-style: decimal;
     font-size: 16pt;
 }
 
@@ -77,6 +76,7 @@
 
 .food-prepare-container{
     width: 800px;
+    padding: 10px;
 }
 
 .logo-container {
@@ -95,4 +95,8 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.listStyle{
+    margin-bottom: 2px;
 }

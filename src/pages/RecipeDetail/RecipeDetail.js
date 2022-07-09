@@ -142,7 +142,7 @@ function RecipeDetail(){
                                         {recipeData.analyzedInstructions.length ?
                                             recipeData.analyzedInstructions[0].steps.map((step) => {
                                                 return (
-                                                    <li key={step.number}>{step.step}</li>
+                                                    <li className={styles[`listStyle`]} key={step.number}>{step.step}</li>
                                                 )
                                             }) :
                                             <p>Unfortunately! We couldn't find any instructions</p>}
