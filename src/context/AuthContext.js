@@ -82,10 +82,17 @@ function AuthContextProvider({ children }) {
     }
   }
 
+  //real apikey: e4155c89a5914433a598f82f4041dd76
+  //ad94f2ca2a5b46658368f8e3af1f0eca
+  //665f6e1d6862458991d64691af3ef97f
+  //8a5593f7d89742408c9a05a9a200d3c1
+  //3755023c41ec48de9cb4752756b64fe4
+
   const contextData = {
     ...auth,
     login: login,
     logout: logout,
+    apiKey: '8a5593f7d89742408c9a05a9a200d3c1',
   };
 
   return (

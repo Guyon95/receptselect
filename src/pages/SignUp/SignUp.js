@@ -1,12 +1,13 @@
 import './SignUp.module.css';
 import {Link, useHistory} from "react-router-dom";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
-import background from "../../assets/vegetables-set-left-black-slate.jpg";
+import background from "../../assets/top-view-food-frame-with-copy-space.jpg";
 import Section from "../../components/Section/Section";
 import Button from "../../components/Button/Button";
 import Form from "../../components/Form/Form";
 import Input from "../../components/Input/Input";
+
 
 function SignUp(){
     const history = useHistory();
@@ -16,6 +17,13 @@ function SignUp(){
         password: null,
         role: ["user"]
     });
+    const source = axios.CancelToken.source();
+
+    useEffect(() => {
+        return function cleanup() {
+            source.cancel();
+        }
+    }, []);
 
     function handleChange(evt) {
         const value = evt.target.value;
@@ -30,7 +38,7 @@ function SignUp(){
         try {
 
             await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', user,{
-                //CancelToken: source.token,
+                cancelToken: source.token,
             });
 
            history.push('/signin');

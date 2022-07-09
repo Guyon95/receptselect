@@ -1,31 +1,29 @@
 import styles from "./RecipeDetail.module.css"
-import food from "../../assets/juicy-steak-medium-rare-beef-with-spices-grilled-vegetables.jpg"
 import addIcon from "../../assets/add.png"
 import minusIcon from "../../assets/minus.png"
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Label from "../../components/Label/Label";
 import clock from "../../assets/four-oclock.png";
+import {AuthContext} from "../../context/AuthContext";
 
 function RecipeDetail(){
     const { id, countPerson } = useParams();
-    const [countPersonPage, setCountPerson] = useState(2);
+    const [countPersonPage, setCountPersonPage] = useState(2);
     const [recipeData, setRecipeData] = useState({})
     const [calorie, setCalorie] = useState({})
-
-
-
-
+    const [ingredients, setIngredients] = useState([]);
+    const {apiKey} = useContext(AuthContext)
 
     useEffect(() =>{
-        setCountPerson(countPerson);
+        setCountPersonPage(parseInt(countPerson));
 
         async function getData() {
             try {
                 const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information`, {
                     params: {
-                        apiKey: '3755023c41ec48de9cb4752756b64fe4',
+                        apiKey: apiKey,
                         includeNutrition: true,
                     },
                     //cancelToken:source.token,
@@ -36,6 +34,9 @@ function RecipeDetail(){
                     return nutrient.name === 'Calories'
                 });
 
+                setIngredients(response.data.extendedIngredients)
+
+                //calcIngredients(response.data.extendedIngredients, response.data.servings, parseInt(countPerson))
                 setCalorie(calorie);
             }
             catch (e) {
@@ -48,8 +49,27 @@ function RecipeDetail(){
         getData().then();
     },[])
 
+    function addPerson(){
+        const newCountPersons = countPersonPage + 1;
+        setCountPersonPage(newCountPersons)
 
+        calcIngredients(ingredients, countPersonPage, newCountPersons);
+    }
 
+    function minusPerson(){
+        const newCountPersons = countPersonPage - 1;
+        setCountPersonPage(newCountPersons)
+
+        calcIngredients(ingredients, countPersonPage, newCountPersons);
+    }
+
+    function calcIngredients(ingredients, currentCountPersons, newCountPersons){
+        ingredients.map((ingredient, index) =>{
+            ingredients[index].measures.metric.amount = ingredient.measures.metric.amount / currentCountPersons * newCountPersons;
+        })
+
+        setIngredients(ingredients);
+    }
 
     return(
         <section>
@@ -87,7 +107,7 @@ function RecipeDetail(){
                                         className={styles[`round-button`]}
                                         name="minus-button"
                                         disabled={countPerson === 0}
-                                        onClick={() => setCountPerson(countPersonPage - 1)}
+                                        onClick={minusPerson}
                                     >
                                         <img className={styles[`add-minus-icon`]} src={minusIcon} alt="minus"/>
                                     </button>
@@ -96,7 +116,7 @@ function RecipeDetail(){
                                         className={styles[`round-button`]}
                                         name="add-button"
                                         disabled={countPerson === 20}
-                                        onClick={() => setCountPerson(parseInt(countPersonPage) + 1)}
+                                        onClick={addPerson}
                                     >
                                         <img className={styles[`add-minus-icon`]} src={addIcon} alt="add"/>
                                     </button>
@@ -104,10 +124,11 @@ function RecipeDetail(){
                                 <ul className={styles[`ingredient-list-container`]}>
                                     {recipeData.extendedIngredients &&
                                         <>
-                                        {recipeData.extendedIngredients.map((ingredient) =>{
-                                            return (<li key={ingredient.id}>{ingredient.original}</li>);
-                                        })}
-
+                                            {recipeData.extendedIngredients.map((ingredient, index) =>{
+                                                return (
+                                                    <li key={index}>{Math.round(ingredient.measures.metric.amount / recipeData.servings * countPersonPage)} {ingredient.measures.metric.unitShort} {ingredient.originalName}</li>
+                                                );
+                                            })}
                                         </>
                                     }
 
@@ -118,13 +139,16 @@ function RecipeDetail(){
                                 <ul className={styles[`list-container`]}>
                                     {recipeData.analyzedInstructions &&
                                         <>
-                                            {recipeData.analyzedInstructions[0].steps.map((step) => {
+                                        {recipeData.analyzedInstructions.length ?
+                                            recipeData.analyzedInstructions[0].steps.map((step) => {
                                                 return (
                                                     <li key={step.number}>{step.step}</li>
                                                 )
-                                            })}
+                                            }) :
+                                            <p>Unfortunately! We couldn't find any instructions</p>}
                                         </>
                                     }
+
                                 </ul>
                             </div>
                         </article>

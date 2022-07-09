@@ -34,20 +34,30 @@
     background-color: rgba(255,255,255,0.8);
     border-radius: 8px 0 0 8px ;
     padding: 10px;
+    z-index: 0;
 }
 .input-field:focus{
     outline: var(--orange) solid 2px;
 }
 
-.search-button{
-    background-color: var(--orange);
+.search-button,
+.reset-button{
     color: white;
     font-size: 16pt;
     border: none;
-    border-radius: 0 8px 8px 0;
     width: 80px;
     height: 64px;
 }
+
+.search-button{
+    background-color: var(--orange);
+    border-radius: 0 8px 8px 0;
+}
+
+.reset-button{
+    background-color: gray;
+}
+
 
 .random-recipe-button{
     width: 75px;
