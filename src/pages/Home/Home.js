@@ -177,7 +177,6 @@ function Home(){
                         styleName="reset-button"
                     />
                     <Button
-                        /*TODO OnClick*/
                         onClick={handleSubmit}
                         name="Zoek recept"
                         styleName="home-button"

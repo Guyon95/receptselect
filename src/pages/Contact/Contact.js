@@ -6,18 +6,11 @@ import styles from "./Contact.module.css"
 import Button from "../../components/Button/Button";
 
 function Contact(){
-    const [contactForm, setContactForm] = useState({
-        subject: '',
-        comment: '',
-    });
+    const [subject, setSubject] = useState('');
+    const [comment, setComment] = useState('');
 
-    function handleChange(e){
-        const value = e.target.value;
-
-        setContactForm({
-            ...contactForm,
-            [e.target.name]: value
-        });
+    function run(){
+        console.log(`Ik ga nu een mail versturen met als onderwerp ${subject} en opmerking ${comment} `)
     }
 
     return(
@@ -31,23 +24,24 @@ function Contact(){
                 <Input
                     type="text"
                     name="subject"
-                    placeholder="Onderwerp"
-                    onChange={handleChange}
+                    placeholder="Subject"
+                    onChange={(e) => setSubject(e.target.value)}
                 />
 
                 <textarea
                     className={styles[`textarea-field`]}
                     name="comment"
-                    placeholder="Vul hier uw vraag en/of opmerking in"
+                    placeholder="Enter your question and/or comment here."
                     cols="85"
                     rows="10"
+                    onChange={(e) => setComment(e.target.value)}
                 />
 
                 <Button
-                    name="Verzend"
+                    name="Send"
                     type="button"
                     styleName="button-body"
-                    onClick={() => console.log("Formulier verzonden!!")}
+                    onClick={run}
                 />
             </form>
         </Section>

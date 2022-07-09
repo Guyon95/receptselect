@@ -17,6 +17,8 @@ function RecipeDetail(){
     const {apiKey} = useContext(AuthContext)
 
     useEffect(() =>{
+        const source = axios.CancelToken.source();
+
         setCountPersonPage(parseInt(countPerson));
 
         async function getData() {
@@ -26,7 +28,7 @@ function RecipeDetail(){
                         apiKey: apiKey,
                         includeNutrition: true,
                     },
-                    //cancelToken:source.token,
+                    cancelToken:source.token,
                 });
                 setRecipeData(response.data);
 
@@ -35,18 +37,19 @@ function RecipeDetail(){
                 });
 
                 setIngredients(response.data.extendedIngredients)
-
-                //calcIngredients(response.data.extendedIngredients, response.data.servings, parseInt(countPerson))
                 setCalorie(calorie);
             }
             catch (e) {
                 console.log(e);
             }
+        }
+        getData().then();
 
-
+        return function cleanup() {
+            source.cancel();
         }
 
-        getData().then();
+        // eslint-disable-next-line
     },[])
 
     function addPerson(){
@@ -65,7 +68,7 @@ function RecipeDetail(){
 
     function calcIngredients(ingredients, currentCountPersons, newCountPersons){
         ingredients.map((ingredient, index) =>{
-            ingredients[index].measures.metric.amount = ingredient.measures.metric.amount / currentCountPersons * newCountPersons;
+            return(ingredients[index].measures.metric.amount = ingredient.measures.metric.amount / currentCountPersons * newCountPersons);
         })
 
         setIngredients(ingredients);

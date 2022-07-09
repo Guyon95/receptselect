@@ -1,4 +1,4 @@
-import {useHistory, useLocation} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import axios from "axios";
 import {useContext, useEffect, useState} from "react";
 import styles from "./Recipes.module.css";
@@ -17,54 +17,9 @@ function Recipes(){
     const [searchValue, setSearchValue] = useState('');
     const {apiKey} = useContext(AuthContext);
     const location = useLocation();
-    const source = axios.CancelToken.source();
-    const history = useHistory();
 
-    useEffect(() => {
-        return function cleanup() {
-            source.cancel();
-        }
-    }, []);
-
-    async function getRandomRecipes(number){
-        try{
-            const response = await axios.get(`https://api.spoonacular.com/recipes/random`, {
-                params: {
-                    apiKey: apiKey,
-                    type: 'main course',
-                    instructionsRequired: true,
-                    number: number,
-                },
-                //cancelToken:source.token,
-            });
-
-            history.push(`/recipe/${response.data.recipes[0].id}/2`)
-        }
-        catch (e){
-            console.log(e);
-        }
-    }
-
-    async function getRecipes(number){
-        try{
-           const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch`, {
-                params: {
-                    ...params,
-                    apiKey: apiKey,
-                    type: 'main course',
-                    instructionsRequired: true,
-                    number: number,
-                    query:searchValue,
-
-                },
-                //cancelToken:source.token,
-            });
-
-            setRecipes(response.data.results);
-        }catch (e) {
-            console.log(e);
-        }
-    }
+    const [buttonClicks, setButtonClicks] = useState(0);
+    const [randomButtonClicks, setRandomButtonClicks] = useState(0);
 
     useEffect(() => {
         if (location.state !== undefined) {
@@ -75,27 +30,74 @@ function Recipes(){
             });
             setCountPerson(location.state.personCount);
         }
+
+        // eslint-disable-next-line
     },[]);
 
-    useEffect(() =>{
-        async function getRecipesData() {
+    useEffect(() => {
+        const source = axios.CancelToken.source();
 
-            await getRecipes(20);
+        async function getRandomRecipes(number) {
+            try {
+                const response = await axios.get(`https://api.spoonacular.com/recipes/random`, {
+                    params: {
+                        apiKey: apiKey,
+                        type: 'main course',
+                        instructionsRequired: true,
+                        number: number,
+                    },
+                    cancelToken: source.token,
+                });
 
+                setRecipes(response.data.recipes);
+            } catch (e) {
+                console.log(e);
+            }
         }
 
-        getRecipesData().then();
+        getRandomRecipes(1).then();
 
-    },[]);
+        return function cleanup() {
+            source.cancel();
+        }
+
+        // eslint-disable-next-line
+    }, [randomButtonClicks])
+
+    useEffect(() =>{
+        const source = axios.CancelToken.source();
+
+        async function getRecipes(number){
+            try{
+                const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch`, {
+                    params: {
+                        ...params,
+                        apiKey: apiKey,
+                        type: 'main course',
+                        instructionsRequired: true,
+                        number: number,
+                        query:searchValue,
+
+                    },
+                    cancelToken:source.token,
+                });
+
+                setRecipes(response.data.results);
+            }catch (e) {
+                console.log(e);
+            }
+        }
+
+        getRecipes(20).then();
+
+        return function cleanup() {
+            source.cancel();
+        }
 
 
-    async function getRandomRecipe(){
-        await getRandomRecipes(1);
-    }
+        // eslint-disable-next-line
+    },[buttonClicks]);
 
-    async function searchRecipes(){
-        await getRecipes(10);
-    }
 
     return(
         <div className={styles['recipes-container']}>
@@ -124,7 +126,7 @@ function Recipes(){
                             type="button"
                             className={styles[`search-button`]}
                             name="search-button"
-                            onClick={searchRecipes}
+                            onClick={() => setButtonClicks(buttonClicks + 1)}
                         >
                             <img src={searchIcon} alt="searchIcon"/>
                         </button>
@@ -135,7 +137,7 @@ function Recipes(){
                                 type="button"
                                 className={styles[`random-recipe-button`]}
                                 name="random-recipe-button"
-                                onClick={getRandomRecipe}
+                                onClick={() => setRandomButtonClicks(randomButtonClicks + 1)}
                             >
                                 <img src={dinnerIcon} alt="dinnerIcon"/>
                                 <p className={styles[`text`]}>Verras me</p>
