@@ -1,4 +1,3 @@
-import './SignIn.module.css';
 import {useContext, useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
@@ -8,7 +7,8 @@ import Section from "../../components/Section/Section";
 import Button from "../../components/Button/Button";
 import Form from "../../components/Form/Form";
 import Input from "../../components/Input/Input";
-import styles from "../Home/Home.module.css";
+import styles from "../SignIn/SignIn.module.css";
+import Logo from "../../components/Logo/Logo";
 
 
 
@@ -55,6 +55,7 @@ function SignIn(){
             background={background}
         >
             <Form>
+                <Logo />
                 <Input
                     type="text"
                     name="username"
@@ -67,13 +68,16 @@ function SignIn(){
                     placeholder="Wachtwoord"
                     onChange={handleChange}
                 />
-                <p>Geen account? <Link to="/signup">Registreer hier</Link></p>
+                <p className={styles[`link-text`]}>Geen account? <Link to="/signup">Registreer hier</Link></p>
                 {error && <p className={styles[`error`]}>Combinatie van wachtwoord en gebruikersnaam zijn onjuist!</p>}
-                <Button
-                    onClick={getToken}
-                    name="Inloggen"
-                    styleName="button-body"
-                />
+                <div className={styles[`inlog-button-container`]}>
+                    <Button
+                        onClick={getToken}
+                        name="Inloggen"
+                        styleName="button-body"
+                    />
+                </div>
+
             </Form>
         </Section>
     );

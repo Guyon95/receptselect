@@ -1,10 +1,9 @@
-//import React, { useContext } from 'react';
-import logo from '../../assets/roast-food.png';
 import { useHistory, Link } from 'react-router-dom';
 import styles from "./NavBar.module.css";
 import {useContext} from "react";
 import { AuthContext } from '../../context/AuthContext';
 import Button from "../Button/Button";
+import Logo from "../Logo/Logo";
 
 function NavBar() {
     const {isAuth, logout} = useContext(AuthContext);
@@ -14,7 +13,7 @@ function NavBar() {
         <nav className={styles[`nav-container`]}>
             <Link to="/">
                 <span className={styles[`logo-container`]}>
-                    <img className={styles[`logo-container-img`]} src={logo} alt="logo"/>
+                    <Logo />
                     <h2>Recipe Select</h2>
                 </span>
         </Link>

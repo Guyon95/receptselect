@@ -7,6 +7,8 @@ import Section from "../../components/Section/Section";
 import Button from "../../components/Button/Button";
 import Form from "../../components/Form/Form";
 import Input from "../../components/Input/Input";
+import styles from "../SignUp/SignUp.module.css";
+import Logo from "../../components/Logo/Logo";
 
 
 function SignUp(){
@@ -53,6 +55,7 @@ function SignUp(){
           background={background}
         >
           <Form>
+              <Logo />
               <Input
                   type="text"
                   name="username"
@@ -72,11 +75,13 @@ function SignUp(){
                   onChange={handleChange}
               />
               <p>Heb je al een account? <Link to="/signin">Klik hier</Link> om  in te loggen.</p>
-              <Button
-                  onClick={createUserRequest}
-                  name="Registreren"
-                  styleName="button-body"
-              />
+              <div className={styles[`inlog-button-container`]}>
+                <Button
+                    onClick={createUserRequest}
+                    name="Registreren"
+                    styleName="button-body"
+                />
+              </div>
           </Form>
         </Section>
     );

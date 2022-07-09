@@ -64,15 +64,16 @@ function Profile(){
                         name="password"
                     />
                 </label>
+                <div className={styles[`label-container`]}>
+                    <Button
+                        type="button"
+                        styleName="button-body"
+                        name="Opslaan"
+                        onClick={saveUserData}
+                    >
 
-                <Button
-                    type="button"
-                    styleName="button-body"
-                    name="Opslaan"
-                    onClick={saveUserData}
-                >
-
-                </Button>
+                    </Button>
+                </div>
             </Form>
         </Section>
 

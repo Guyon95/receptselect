@@ -1,1 +1,8 @@
+.link-text,
+.inlog-button-container{
+    width: 100%;
+}
 
+.error{
+    color: var(--orange);
+}
