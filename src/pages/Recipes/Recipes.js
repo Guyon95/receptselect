@@ -149,9 +149,13 @@ function Recipes(){
 
             {recipes &&
             <>
-                {recipes && recipes.map((recipe) => {
-                    return <RecipeCard key={recipe.id} data={recipe} countPerson={countPerson} />
-                })}
+                {recipes.length ?
+                    recipes && recipes.map((recipe) => {
+                        return <RecipeCard key={recipe.id} data={recipe} countPerson={countPerson} />
+                    }) :
+
+                    <h2>Unfortunately! We couldn't find any recipes</h2>
+                }
             </>
 
             }
