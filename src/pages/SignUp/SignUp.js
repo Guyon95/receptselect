@@ -59,7 +59,7 @@ function SignUp(){
               <Input
                   type="text"
                   name="username"
-                  placeholder="Gebruikersnaam"
+                  placeholder="Username"
                   onChange={handleChange}
               />
               <Input
@@ -71,14 +71,14 @@ function SignUp(){
               <Input
                   type="password"
                   name="password"
-                  placeholder="Wachtwoord"
+                  placeholder="Password"
                   onChange={handleChange}
               />
-              <p>Heb je al een account? <Link to="/signin">Klik hier</Link> om  in te loggen.</p>
+              <p>Do you already have an account? Press <Link to="/signin">here</Link> to sign in.</p>
               <div className={styles[`inlog-button-container`]}>
                 <Button
                     onClick={createUserRequest}
-                    name="Registreren"
+                    name="Sign Up"
                     styleName="button-body"
                 />
               </div>

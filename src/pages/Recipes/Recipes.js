@@ -110,7 +110,7 @@ function Recipes(){
                             className={styles[`input-field`]}
                             type="text"
                             value={searchValue}
-                            placeholder="Zoek op ingrediënten of recept"
+                            placeholder="Search by ingredients or recipe. (Comma separated)"
                             name="recipe-searchbar"
                             onChange={(e) => setSearchValue(e.target.value)}
                         />
@@ -140,7 +140,7 @@ function Recipes(){
                                 onClick={() => setRandomButtonClicks(randomButtonClicks + 1)}
                             >
                                 <img src={dinnerIcon} alt="dinnerIcon"/>
-                                <p className={styles[`text`]}>Verras me</p>
+                                <p className={styles[`text`]}>Suprise me</p>
                             </button>
                         </div>
                     </div>

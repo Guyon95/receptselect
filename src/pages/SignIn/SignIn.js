@@ -59,21 +59,21 @@ function SignIn(){
                 <Input
                     type="text"
                     name="username"
-                    placeholder="Gebruikersnaam"
+                    placeholder="Username"
                     onChange={handleChange}
                 />
                 <Input
                     type="password"
                     name="password"
-                    placeholder="Wachtwoord"
+                    placeholder="Password"
                     onChange={handleChange}
                 />
-                <p className={styles[`link-text`]}>Geen account? <Link to="/signup">Registreer hier</Link></p>
-                {error && <p className={styles[`error`]}>Combinatie van wachtwoord en gebruikersnaam zijn onjuist!</p>}
+                <p className={styles[`link-text`]}>No account? <Link to="/signup">Sign up here</Link></p>
+                {error && <p className={styles[`error`]}>Combination of password and username are incorrect!</p>}
                 <div className={styles[`inlog-button-container`]}>
                     <Button
                         onClick={getToken}
-                        name="Inloggen"
+                        name="Sign In"
                         styleName="button-body"
                     />
                 </div>

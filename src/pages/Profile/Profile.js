@@ -11,6 +11,7 @@ import Button from "../../components/Button/Button";
 
 function Profile(){
     const { user } = useContext(AuthContext);
+    const [saveData, setSaveData] = useState(false)
 
     const [pageUser, setPageUser] = useState({
         username: user.username,
@@ -29,7 +30,7 @@ function Profile(){
 
     function saveUserData(){
         console.log("Opslaan.....")
-        /*TODO Userdata opslaan*/
+        setSaveData(true);
     }
 
     return(
@@ -38,7 +39,7 @@ function Profile(){
         >
             <Form>
                 <label className={styles[`label-container`]}>
-                    Gebruikersnaam
+                    Username
                     <Input
                         type="text"
                         name="username"
@@ -48,17 +49,17 @@ function Profile(){
                     />
                 </label>
                 <label className={styles[`label-container`]}>
-                    Emailadres
+                    Email address
                     <Input
                         type="email"
                         name="email"
-                        placeholder="Emailadres"
+                        placeholder="Email"
                         onChange={handleChange}
                         value={pageUser.email}
                     />
                 </label>
                 <label className={styles[`label-container`]}>
-                    Wachtwoord
+                    Password
                     <Input
                         type="password"
                         name="password"
@@ -68,12 +69,13 @@ function Profile(){
                     <Button
                         type="button"
                         styleName="button-body"
-                        name="Opslaan"
+                        name="Save"
                         onClick={saveUserData}
                     >
 
                     </Button>
                 </div>
+                {saveData && <p>Your settings has been submitted.</p>}
             </Form>
         </Section>
 

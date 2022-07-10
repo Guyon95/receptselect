@@ -87,8 +87,8 @@ function RecipeDetail(){
                                     <p>{recipeData.readyInMinutes} min</p>
                                 </span>
 
-                                <p>Vegatarisch: {recipeData.vegetarian ? 'Ja' : 'Nee'}</p>
-                                <p>Gluten vrij: {recipeData.glutenfree ? 'Ja' : 'Nee'}</p>
+                                <p>Vegetarian: {recipeData.vegetarian ? 'Yes' : 'No'}</p>
+                                <p>Gluten-free: {recipeData.glutenfree ? 'Yes' : 'No'}</p>
                                 <p>{Math.round(calorie.amount)} kcal</p>
 
                                 {recipeData.dishTypes &&
@@ -104,7 +104,7 @@ function RecipeDetail(){
                         <article className={styles[`article-container`]}>
                             <div className={styles[`ingredient-content`]}>
                                 <div className={styles[`person-counter-container`]}>
-                                    <p>{countPersonPage} personen</p>
+                                    <p>{countPersonPage} persons</p>
                                     <button
                                         type="button"
                                         className={styles[`round-button`]}
@@ -138,7 +138,7 @@ function RecipeDetail(){
                                 </ul>
                             </div>
                             <div className={styles[`food-prepare-container`]}>
-                                <h2>Bereidingswijze</h2>
+                                <h2>Instructions</h2>
                                 <ul className={styles[`list-container`]}>
                                     {recipeData.analyzedInstructions &&
                                         <>

@@ -49,3 +49,10 @@ Stap 2: De terminal is nu onder aan u scherm geopend. \
 Stap 3: Als u het project voor de allereerste keer inlaad voer dan het volgende commando in `npm install`
 Stap 4: Zodra de npm install klaar is kunt het volgende commando invoeren om de React applicatie te starten. `npm start`
 Stap 5: De React applicatie is gestart. Veel plezier!
+
+## Accounts
+Er zijn geen accounts ingesteld. Deze kunnen zelf aangemaakt worden via de registratie pagina.
+
+## Belangerijkste pagina's
+![img.png](img.png)
+![img_1.png](img_1.png)

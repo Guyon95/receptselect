@@ -116,60 +116,60 @@ function Home(){
         >
             <Form>
                 <div className={styles[`question-container`]}>
-                    <p className={styles[`question`]}>Wat is uw stemming?</p>
+                    <p className={styles[`question`]}>What is your mood today?</p>
                     <span className={styles[`radio-container`]}>
                         <Radio
                             id="sad"
                             type="radio"
-                            name="stemming"
-                            description="Verdrietig"
+                            name="mood"
+                            description="Sad"
                             checked={mood === 'sad'}
                             onChange={handleChangeMood}
                         />
                         <Radio
                             id="neutral"
                             type="radio"
-                            name="stemming"
-                            description="Neutraal"
+                            name="Mood"
+                            description="Neutral"
                             checked={mood === 'neutral'}
                             onChange={handleChangeMood}
                         />
                         <Radio
                             id="happy"
                             type="radio"
-                            name="stemming"
-                            description="Blij"
+                            name="mood"
+                            description="Happy"
                             checked={mood === 'happy'}
                             onChange={handleChangeMood}
                         />
                     </span>
                 </div>
                 <div className={styles[`question-container`]}>
-                    <p className={styles[`question`]}>Met hoeveel eet u?</p>
+                    <p className={styles[`question`]}>How many people are you going to eat with?</p>
                     <input className={styles[`input-field`]} type="number" value={company} name="number" max="20" min="0" onChange={handleChangeCompany}/>
                 </div>
                 <div className={styles[`question-container`]}>
-                    <p className={styles[`question`]}>Heeft u zin om te koken?</p>
+                    <p className={styles[`question`]}>Do you feel like cooking?</p>
                     <span className={styles[`radio-container`]}>
                         <Radio
                             id="yes"
                             type="radio"
-                            name="motivatie"
-                            description="Ja"
+                            name="motivation"
+                            description="Yes"
                             checked={motivation === 'yes'}
                             onChange={handleChangeMotivation}
                         />
                         <Radio
                             id="no"
                             type="radio"
-                            name="motivatie"
-                            description="Nee"
+                            name="motivation"
+                            description="No"
                             checked={motivation === 'no'}
                             onChange={handleChangeMotivation}
                         />
                     </span>
                 </div>
-                {error && <p className={styles[`error`]}>Niet alle velden zijn gevuld!</p>}
+                {error && <p className={styles[`error`]}>Not all fields are completed!</p>}
                 <div className={styles[`button-container`]}>
                     <Button
                         onClick={resetInput}
@@ -178,7 +178,7 @@ function Home(){
                     />
                     <Button
                         onClick={handleSubmit}
-                        name="Zoek recept"
+                        name="Search Recipe"
                         styleName="home-button"
                     />
                 </div>

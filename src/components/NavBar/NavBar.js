@@ -25,7 +25,7 @@ function NavBar() {
                             styleName="button-nav"
                         />
                         <Button
-                            name="Recepten"
+                            name="Recipes"
                             onClick={() => history.push('/recipes')}
                             styleName="button-nav"
                         />
@@ -35,12 +35,12 @@ function NavBar() {
                             styleName="button-nav"
                         />
                         <Button
-                            name="Mijn profiel"
+                            name="My profile"
                             onClick={() => history.push('/profile')}
                             styleName="button-nav"
                         />
                         <Button
-                            name="Uitloggen"
+                            name="Sign out"
                             onClick={logout}
                             styleName="button-nav"
                         />
@@ -48,12 +48,12 @@ function NavBar() {
                 :
                 <div className={styles[`button-container`]}>
                     <Button
-                        name="Log in"
+                        name="Sign in"
                         onClick={() => history.push('/signin')}
                         styleName="button-nav"
                     />
                     <Button
-                        name="Registreren"
+                        name="Sign Up"
                         onClick={() => history.push('/signup')}
                         styleName="button-nav"
                     />

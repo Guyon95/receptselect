@@ -8,9 +8,11 @@ import Button from "../../components/Button/Button";
 function Contact(){
     const [subject, setSubject] = useState('');
     const [comment, setComment] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
 
     function run(){
         console.log(`Ik ga nu een mail versturen met als onderwerp ${subject} en opmerking ${comment} `)
+        setShowAlert(true);
     }
 
     return(
@@ -43,6 +45,8 @@ function Contact(){
                     styleName="button-body"
                     onClick={run}
                 />
+
+                {showAlert && <p>Your tickets has been submitted.</p>}
             </form>
         </Section>
 

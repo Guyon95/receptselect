@@ -1,6 +1,7 @@
 import React, {createContext, useEffect, useState} from 'react';
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import axios from "axios";
+import Button from "../components/Button/Button";
 
 export const AuthContext = createContext({});
 
@@ -11,10 +12,8 @@ function AuthContextProvider({ children }) {
     status: 'pending',
   });
 
-  //const [source] = useState(axios.CancelToken.source());
 
   useEffect(() => {
-
     const token = localStorage.getItem('token');
 
     if (token !== null){
@@ -27,10 +26,6 @@ function AuthContextProvider({ children }) {
         status: 'done',
       });
     }
-
-    // return function cleanup() {
-    //   source.cancel(); // <--- request annuleren
-    // }
 
   },[]);
 
@@ -58,14 +53,14 @@ function AuthContextProvider({ children }) {
   }
 
   async function getUserData(token){
-
+    const source = useState(axios.CancelToken.source());
     try{
       const data = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/user`,{
         headers:{
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        //cancelToken:source.token,
+        cancelToken:source.token,
       });
 
       toggleAuth({
@@ -99,7 +94,11 @@ function AuthContextProvider({ children }) {
   return (
     <AuthContext.Provider value={contextData}>
       {auth.status === 'pending'
-      ? <p>Loading....</p>
+      ? <><p>Sessie is verlopen!</p><Button
+              name="Uitloggen"
+              onClick={logout}
+              styleName="button-nav"
+          /></>
       : children
       }
     </AuthContext.Provider>

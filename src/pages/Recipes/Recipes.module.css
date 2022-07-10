@@ -72,5 +72,6 @@
 
 .text{
     color: var(--black);
+    font-size: 11pt;
 }
 
