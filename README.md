@@ -54,5 +54,5 @@ Stap 5: De React applicatie is gestart. Veel plezier!
 Er zijn geen accounts ingesteld. Deze kunnen zelf aangemaakt worden via de registratie pagina.
 
 ## Belangerijkste pagina's
-![img.png](img.png)
-![img_1.png](img_1.png)
+![home.png](home.png)
+![recipes.png](recipes.png)
