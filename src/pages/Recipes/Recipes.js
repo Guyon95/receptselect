@@ -17,9 +17,7 @@ function Recipes(){
     const [searchValue, setSearchValue] = useState('');
     const {apiKey} = useContext(AuthContext);
     const location = useLocation();
-
     const [buttonClicks, setButtonClicks] = useState(0);
-    const [randomButtonClicks, setRandomButtonClicks] = useState(0);
 
     useEffect(() => {
         if (location.state !== undefined) {
@@ -34,61 +32,70 @@ function Recipes(){
         // eslint-disable-next-line
     },[]);
 
-    useEffect(() => {
-        const source = axios.CancelToken.source();
+    async function getRandomRecipes() {
+        try {
+            const response = await axios.get(`https://api.spoonacular.com/recipes/random`, {
+                params: {
+                    apiKey: apiKey,
+                    type: 'main course',
+                    instructionsRequired: true,
+                    number: 1,
+                },
+            });
 
-        async function getRandomRecipes(number) {
-            try {
-                const response = await axios.get(`https://api.spoonacular.com/recipes/random`, {
-                    params: {
-                        apiKey: apiKey,
-                        type: 'main course',
-                        instructionsRequired: true,
-                        number: number,
-                    },
-                    cancelToken: source.token,
-                });
+            setRecipes(response.data.recipes);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
-                setRecipes(response.data.recipes);
-            } catch (e) {
-                console.log(e);
-            }
+    async function getRecipes(number, source){
+
+        let apiParams;
+
+        if(buttonClicks > 0){
+            apiParams = {};
+        }
+        else {
+            apiParams = params
         }
 
-        getRandomRecipes(1).then();
+        try{
+            const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch`, {
+                params: {
+                    ...apiParams,
+                    apiKey: apiKey,
+                    type: 'main course',
+                    instructionsRequired: true,
+                    number: number,
+                    query:searchValue,
 
-        return function cleanup() {
-            source.cancel();
+                },
+                cancelToken:source.token,
+            });
+
+            setRecipes(response.data.results);
+        }catch (e) {
+            console.log(e);
         }
-
-        // eslint-disable-next-line
-    }, [randomButtonClicks])
+    }
 
     useEffect(() =>{
         const source = axios.CancelToken.source();
 
-        async function getRecipes(number){
-            try{
-                const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch`, {
-                    params: {
-                        ...params,
-                        apiKey: apiKey,
-                        type: 'main course',
-                        instructionsRequired: true,
-                        number: number,
-                        query:searchValue,
+        getRecipes(20, source).then();
 
-                    },
-                    cancelToken:source.token,
-                });
-
-                setRecipes(response.data.results);
-            }catch (e) {
-                console.log(e);
-            }
+        return function cleanup() {
+            source.cancel();
         }
 
-        getRecipes(20).then();
+        // eslint-disable-next-line
+    },[buttonClicks]);
+
+    useEffect(() =>{
+        const source = axios.CancelToken.source();
+
+        getRecipes(20, source).then();
 
         return function cleanup() {
             source.cancel();
@@ -96,8 +103,12 @@ function Recipes(){
 
 
         // eslint-disable-next-line
-    },[buttonClicks]);
+    },[params]);
 
+    function reset(){
+        setSearchValue('');
+        setParams({});
+    }
 
     return(
         <div className={styles['recipes-container']}>
@@ -118,7 +129,7 @@ function Recipes(){
                             type="button"
                             className={styles[`reset-button`]}
                             name="reset-button"
-                            onClick={() => setSearchValue('')}
+                            onClick={reset}
                         >
                             <img src={resetIcon} alt="searchIcon"/>
                         </button>
@@ -137,7 +148,7 @@ function Recipes(){
                                 type="button"
                                 className={styles[`random-recipe-button`]}
                                 name="random-recipe-button"
-                                onClick={() => setRandomButtonClicks(randomButtonClicks + 1)}
+                                onClick={getRandomRecipes}
                             >
                                 <img src={dinnerIcon} alt="dinnerIcon"/>
                                 <p className={styles[`text`]}>Suprise me</p>

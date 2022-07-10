@@ -27,6 +27,7 @@ function AuthContextProvider({ children }) {
       });
     }
 
+    // eslint-disable-next-line
   },[]);
 
 
@@ -53,14 +54,12 @@ function AuthContextProvider({ children }) {
   }
 
   async function getUserData(token){
-    const source = useState(axios.CancelToken.source());
     try{
       const data = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/user`,{
         headers:{
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        cancelToken:source.token,
       });
 
       toggleAuth({

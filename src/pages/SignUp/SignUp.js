@@ -25,6 +25,7 @@ function SignUp(){
         return function cleanup() {
             source.cancel();
         }
+        // eslint-disable-next-line
     }, []);
 
     function handleChange(evt) {
